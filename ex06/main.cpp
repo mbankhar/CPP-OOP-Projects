@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbankhar <mbankhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 15:27:26 by mbankhar          #+#    #+#             */
-/*   Updated: 2024/10/16 10:40:23 by mbankhar         ###   ########.fr       */
+/*   Created: 2024/10/15 14:30:18 by mbankhar          #+#    #+#             */
+/*   Updated: 2024/10/15 17:21:19 by mbankhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include "Harl.hpp"
 
-	HumanA::HumanA(std::string name, Weapon &weapon) : name(name), weapon(weapon){
-		std::cout << name << " has been made." << std::endl;
-	}
-	
-	HumanA::~HumanA(){
-		std::cout << name << " has been destroyed." << std::endl;
-	}
-	
-void	HumanA::attack()
+int	main()
 {
-	std::cout << name << "attacks with their " << weapon.getType() << std::endl;
+	std::string level;
+	
+	std::cout << "Choose from: DEBUG, INFO, WARNING, ERROR" << std::endl;
+	std::cin >> level;
+	if (level != "DEBUG" && level != "INFO" && level != "WARNING" && level != "ERROR") {
+    std::cout << "Invalid level! Please choose from: DEBUG, INFO, WARNING, ERROR." << std::endl;
+    return 1;
+}
+
+	Harl harl;
+	harl.complain(level);
+	
 }

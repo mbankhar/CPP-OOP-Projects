@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbankhar <mbankhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 15:27:26 by mbankhar          #+#    #+#             */
-/*   Updated: 2024/10/16 10:40:23 by mbankhar         ###   ########.fr       */
+/*   Created: 2024/10/15 14:30:11 by mbankhar          #+#    #+#             */
+/*   Updated: 2024/10/15 15:36:13 by mbankhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#ifndef HARL_HPP
+#define HARL_HPP
+#include <string>
+#include <iostream>
 
-	HumanA::HumanA(std::string name, Weapon &weapon) : name(name), weapon(weapon){
-		std::cout << name << " has been made." << std::endl;
-	}
-	
-	HumanA::~HumanA(){
-		std::cout << name << " has been destroyed." << std::endl;
-	}
-	
-void	HumanA::attack()
-{
-	std::cout << name << "attacks with their " << weapon.getType() << std::endl;
-}
+class Harl {
+
+private:
+	void	debug(void);
+	void	info(void);
+	void	warning(void);
+	void	error(void);
+
+public:
+	Harl();
+
+    ~Harl();
+
+	void	complain(std::string level);
+};
+
+
+#endif

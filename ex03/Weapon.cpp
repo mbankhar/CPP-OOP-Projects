@@ -6,15 +6,19 @@
 /*   By: mbankhar <mbankhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:27:00 by mbankhar          #+#    #+#             */
-/*   Updated: 2024/10/14 16:49:16 by mbankhar         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:41:49 by mbankhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Weapon.hpp"
 
-	Weapon::Weapon(std::string type) : type(type) {}
+	Weapon::Weapon(std::string type) : type(type) {
+		std::cout << type << " has been made." << std::endl;
+	}
 
-	Weapon::~Weapon() {}
+	Weapon::~Weapon() {
+		std::cout << type << " has been destroyed." << std::endl;
+	}
 	
 	const std::string&	Weapon::getType()
 	{

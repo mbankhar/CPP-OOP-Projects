@@ -6,15 +6,19 @@
 /*   By: mbankhar <mbankhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:27:49 by mbankhar          #+#    #+#             */
-/*   Updated: 2024/10/14 17:48:48 by mbankhar         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:40:55 by mbankhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-	HumanB::HumanB(std::string name) : name(name), wep(nullptr){}
+	HumanB::HumanB(std::string name) : name(name), wep(nullptr){
+        std::cout << name << " has been made." << std::endl;
+    }
 	
-	HumanB::~HumanB(){}
+	HumanB::~HumanB(){
+        std::cout << name << " has been destroyed." << std::endl;
+    }
 	
 void HumanB::attack() {
     if (wep) { // Check if weapon is not null
