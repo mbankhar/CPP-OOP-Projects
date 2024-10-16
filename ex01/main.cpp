@@ -6,7 +6,7 @@
 /*   By: mbankhar <mbankhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:37:22 by mbankhar          #+#    #+#             */
-/*   Updated: 2024/10/15 14:32:45 by mbankhar         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:09:05 by mbankhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,3 @@ int	main()
 }
 
 
-ssues with errorhandling in ex01, not checking input with .eof() and .empty(), but apart fr
