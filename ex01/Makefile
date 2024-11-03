@@ -1,7 +1,7 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror  -std=c++11
 TARGET = Bureaucrat
-SRCS = main.cpp Bureaucrat.cpp
+SRCS = main.cpp Bureaucrat.cpp Form.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)
