@@ -16,15 +16,15 @@ AForm::AForm(std::string _name, int _gradeS, int _gradeE) : _name(_name), _grade
 {
 	checkGrade(_gradeS, _name);
 	checkGrade(_gradeE, _name);
-	std::cout << this->_name << " Default constructor called" << std::endl;
+	std::cout << this->_name << " AForm Default constructor called" << std::endl;
 }
 AForm::AForm(const AForm &other) 
     : _name(other._name), _sign(other._sign), _gradeS(other._gradeS), _gradeE(other._gradeE){
-    std::cout << _name << " Copy constructor called" << std::endl;
+    std::cout << _name << " AForm Copy constructor called" << std::endl;
 }
 AForm::~AForm()
 {
-	std::cout << this->_name <<" Desstructor called" << std::endl;
+	std::cout << this->_name <<" AForm Desstructor called" << std::endl;
 }
 
 std::string	AForm::getName() const
@@ -69,3 +69,4 @@ std::ostream& operator<<(std::ostream& os, const AForm& AForm) {
        << ", Grade Required to Execute: " << AForm.getGradeExecute();
     return os;
 }
+

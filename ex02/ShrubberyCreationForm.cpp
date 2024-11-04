@@ -6,7 +6,7 @@
 /*   By: mbankhar <mbankhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 16:16:33 by mbankhar          #+#    #+#             */
-/*   Updated: 2024/11/03 17:02:34 by mbankhar         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:59:16 by mbankhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,25 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
     std::cout << "ShrubberyCreationForm destructor called." << std::endl;
 }
 
-void ShrubberyCreationForm::execute() const {
+void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
+    if (!getSign())
+        throw FormNotSignedException();
+    
+    if (executor.getGrade() > getGradeExecute())
+        throw GradeTooLowException("Grade too low to execute ShrubberyCreationForm.", executor.getName());
+
     std::ofstream file(_target + "_shrubbery");
     if (file.is_open()) {
-        file << "ASCII Tree\n";
+
+        file << "       ###\n";
+        file << "      #o###\n";
+        file << "    #####o###\n";
+        file << "   #o#\\#|#/###\n";
+        file << "    ###\\|/#o#\n";
+        file << "     # }|{  #\n";
+        file << "       }|{\n";
         file.close();
+
         std::cout << "Shrubbery created for " << _target << std::endl;
     } else {
         std::cerr << "Failed to create file for " << _target << std::endl;

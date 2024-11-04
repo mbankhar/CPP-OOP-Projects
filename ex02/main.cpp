@@ -6,47 +6,64 @@
 /*   By: mbankhar <mbankhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 14:35:02 by mbankhar          #+#    #+#             */
-/*   Updated: 2024/11/03 12:58:10 by mbankhar         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:02:35 by mbankhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main() {
     try {
-        // Create Bureaucrats
-        Bureaucrat highRankBureaucrat("Alice", 1);   // Highest possible grade
-        Bureaucrat lowRankBureaucrat("Bob", 150);    // Lowest possible grade
+        // Create bureaucrats with different grades
+        Bureaucrat alice("Alice", 1);
+        Bureaucrat bob("Bob", 50);
+        Bureaucrat charlie("Charlie", 150);
 
-        // Create Forms with valid grades required to sign and execute
-        Form importantForm("Top Secret Form", 50, 25);  // Grades required: sign = 50, execute = 25
-        Form minorForm("Public Notice Form", 150, 100); // Grades required: sign = 150, execute = 100
+        // Display grades of bureaucrats
+        std::cout << alice.getName() << " grade: " << alice.getGrade() << std::endl;
+        std::cout << bob.getName() << " grade: " << bob.getGrade() << std::endl;
+        std::cout << charlie.getName() << " grade: " << charlie.getGrade() << std::endl;
 
-        // Display form and bureaucrat information
-        std::cout << "Bureaucrats and Forms initialized:\n";
-        std::cout << highRankBureaucrat << std::endl;
-        std::cout << lowRankBureaucrat << std::endl;
-        std::cout << importantForm << std::endl;
-        std::cout << minorForm << std::endl;
+        // Create forms with different targets
+        ShrubberyCreationForm shrubbery("Garden");
+        RobotomyRequestForm robotomy("Robot");
+        PresidentialPardonForm pardon("Prisoner");
 
-        // Attempt to sign forms with different Bureaucrats
-        std::cout << "\nAttempting to sign forms:\n";
-        
-        highRankBureaucrat.signForm(importantForm);  // Should succeed
-        lowRankBureaucrat.signForm(importantForm);   // Should fail
+        // Display grade requirements for forms
+        std::cout << "\n--- Form Grade Requirements ---" << std::endl;
+        std::cout << shrubbery.getName() << " - Sign: " << shrubbery.getGradeSign()
+                  << ", Execute: " << shrubbery.getGradeExecute() << std::endl;
+        std::cout << robotomy.getName() << " - Sign: " << robotomy.getGradeSign()
+                  << ", Execute: " << robotomy.getGradeExecute() << std::endl;
+        std::cout << pardon.getName() << " - Sign: " << pardon.getGradeSign()
+                  << ", Execute: " << pardon.getGradeExecute() << std::endl;
 
-        highRankBureaucrat.signForm(minorForm);      // Should succeed
-        lowRankBureaucrat.signForm(minorForm);       // Should also succeed
+        // Test signing and executing with different ranks
+        std::cout << "\n--- ShrubberyCreationForm Tests ---" << std::endl;
+        charlie.signForm(shrubbery); // Should fail (grade too low)
+        alice.executeForm(shrubbery); // Should fail (form not signed)
 
-        // Verify signed status
-        std::cout << "\nForm status after signing attempts:\n";
-        std::cout << importantForm << std::endl;
-        std::cout << minorForm << std::endl;
+        std::cout << "\n--- RobotomyRequestForm Tests ---" << std::endl;
+        bob.signForm(robotomy); // Should succeed
+        bob.executeForm(robotomy); // Should fail due to insufficient grade
+
+        std::cout << "\n--- PresidentialPardonForm Tests ---" << std::endl;
+        alice.signForm(pardon); // Only Alice can sign due to grade requirements
+        alice.executeForm(pardon); // Should succeed
+
+        std::cout << "\n--- Insufficient Grade for Execution ---" << std::endl;
+        bob.executeForm(pardon); // Should fail due to insufficient grade for execution
+
+        std::cout << "\n--- Attempt to Execute Unsigned Form ---" << std::endl;
+        PresidentialPardonForm unsignedForm("Unsigned");
+        bob.executeForm(unsignedForm); // Should throw exception for unsigned form
 
     } catch (const std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        std::cerr << "Exception: " << e.what() << std::endl;
     }
 
     return 0;

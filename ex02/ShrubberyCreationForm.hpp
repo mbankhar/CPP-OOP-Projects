@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// ShrubberyCreationForm.hpp
 #pragma once
 #include "AForm.hpp"
 #include <string>
@@ -27,5 +26,5 @@ public:
     ~ShrubberyCreationForm();
 
 
-    void execute() const override;
+    void execute(Bureaucrat const & executor) const;
 };
