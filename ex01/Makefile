@@ -1,7 +1,7 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror  -std=c++11
-TARGET = Scalar
-SRCS = main.cpp ScalarConverter.cpp
+TARGET = Serialization
+SRCS = main.cpp Serialization.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)
