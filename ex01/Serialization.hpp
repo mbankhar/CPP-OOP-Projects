@@ -6,7 +6,8 @@
 
 typedef struct s_Data
 {
-	std::string str;
+	std::string text;
+	int         number;
 } Data;
 
 class Serialization
