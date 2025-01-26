@@ -55,10 +55,23 @@ int main()
 {
 	srand(static_cast<unsigned int>(time(0)));
 
-	Base* base = generate();
+	Base *base = generate();
 	identify(base);
 	identify(*base);
 
+	Base *base_two;
+	base_two = generate();
+	identify(base_two);
+	identify(*base_two);
+
+	Base *base_three;
+	base_three = generate();
+	identify(base_three);
+	identify(*base_three);
+
+
 	delete base;
+	delete base_two;
+	delete base_three;
 	return 0;
 }

@@ -1,7 +1,7 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror  -std=c++11
-TARGET = Serialization
-SRCS = main.cpp Serialization.cpp
+TARGET = Identify
+SRCS = main.cpp Base.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)

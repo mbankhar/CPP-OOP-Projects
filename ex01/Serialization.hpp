@@ -10,14 +10,14 @@ typedef struct s_Data
 	int         number;
 } Data;
 
-class Serialization
+class Serializer
 {
 private:
 
-	~Serialization();
-	Serialization();
-	Serialization(Serialization const & src);
-	Serialization & operator=(Serialization const & src);
+	~Serializer();
+	Serializer();
+	Serializer(Serializer const & src);
+	Serializer & operator=(Serializer const & src);
 
 public:
 
