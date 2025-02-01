@@ -70,3 +70,10 @@ void Span::printNumbers() const
 	}
 	std::cout << std::endl;
 }
+template <typename Iterator>
+void Span::addRange(Iterator start, Iterator end)
+	{
+		if (std::distance(start, end) + numbers.size() > N)
+			throw std::runtime_error("Not enough space to add range");
+		numbers.insert(numbers.end(), start, end);
+	}

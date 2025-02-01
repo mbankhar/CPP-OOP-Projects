@@ -23,7 +23,8 @@ public:
 	int longestSpan() const;
 	
 
-
+	template <typename Iterator>
+	void addRange(Iterator start, Iterator end);
 
 	void printNumbers() const;
 };
