@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
     }
 
     BitcoinExchange btc;
-    if (!btc.loadRatios("data.csv")) return 1; // Load Bitcoin price data
-    btc.process(argv[1]); // Process user input file
+    if (!btc.loadRatios("data.csv")) return 1;
+    btc.process(argv[1]);
 
     return 0;
 }
