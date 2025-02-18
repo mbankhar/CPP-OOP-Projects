@@ -38,14 +38,14 @@ void BitcoinExchange::process(const std::string &filename)
 	std::string	date;
 	std::string valueStr;
 	double value;
-	std::getline(file, line);
+	// std::getline(file, line);
 
 	while (std::getline(file, line))
 	{
 		std::istringstream ss(line);
 		if (std::getline(ss, date, '|') && std::getline(ss, valueStr))
 		{
-			date.erase(date.find_last_not_of(" ") + 1);  // Trim spaces
+			date.erase(date.find_last_not_of(" ") + 1);
 			valueStr.erase(0, valueStr.find_first_not_of(" "));
 
 			try {

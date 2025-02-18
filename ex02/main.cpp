@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
 		pm.sortContainers();
 		pm.printAfter();
 		pm.printTimes();
+	}
 	catch (const std::exception& e)
 	{
 		std::cerr << "Error" << std::endl;
