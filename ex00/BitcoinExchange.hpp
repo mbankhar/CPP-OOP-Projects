@@ -10,7 +10,8 @@ private:
 	std::map<std::string, double> ratios;
 
 public:
-	bool			loadRatios(const std::string &file);
+	bool		loadRatios(const std::string &file);
 	void		process(const std::string &file);
 	std::string findClosestDate(const std::string &inputDate);
+	bool		validateDate(const std::string &date);
 };

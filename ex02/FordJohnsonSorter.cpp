@@ -7,63 +7,72 @@
 template <typename Container>
 void FordJohnsonSorter::sort(Container &c)
 {
-	if (c.size() < 2)
-		return;
+    if (c.size() < 2)
+        return;
 
-	std::vector<std::pair<int,int>> pairs;
-	pairs.reserve(c.size() / 2);
+    std::vector<std::pair<int, int>> pairs;
+    pairs.reserve(c.size() / 2);
 
-	bool   hasLeftover  = false;
-	int    leftoverValue = 0;
+    bool hasLeftover = false;
+    int leftoverValue = 0;
 
-	auto it = c.begin();
-	while (it != c.end())
-	{
-		int first = *it;
-		++it;
-		if (it != c.end())
-		{
-			int second = *it;
-			++it;
+    auto it = c.begin();
+    while (it != c.end())
+    {
+        int first = *it;
+        ++it;
+        if (it != c.end())
+        {
+            int second = *it;
+            ++it;
 
-			if (first > second)
-				std::swap(first, second);
+            if (first > second)
+                std::swap(first, second);
 
-			pairs.push_back(std::make_pair(first, second));
-		}
-		else
-		{
-			hasLeftover   = true;
-			leftoverValue = first;
-			break;
-		}
-	}
-	Container mainChain;
-	mainChain.clear();
+            pairs.push_back(std::make_pair(first, second));
+        }
+        else
+        {
+            hasLeftover = true;
+            leftoverValue = first;
+            break;
+        }
+    }
 
-	if (!pairs.empty())
-		mainChain.push_back(pairs[0].second);
+    Container mainChain;
+    mainChain.clear();
 
-	for (size_t i = 1; i < pairs.size(); i++)
-	{
-		int val = pairs[i].second;
-		auto pos = binaryInsert(mainChain, val);
-		mainChain.insert(pos, val);
-	}
-	for (size_t i = 0; i < pairs.size(); i++)
-	{
-		int val = pairs[i].first;
-		auto pos = binaryInsert(mainChain, val);
-		mainChain.insert(pos, val);
-	}
-	if (hasLeftover)
-	{
-		auto pos = binaryInsert(mainChain, leftoverValue);
-		mainChain.insert(pos, leftoverValue);
-	}
-	c.clear();
-	c.insert(c.end(), mainChain.begin(), mainChain.end());
+    if (!pairs.empty())
+        mainChain.push_back(pairs[0].second);
+
+    for (size_t i = 1; i < pairs.size(); i++)
+    {
+        int val = pairs[i].second;
+        auto pos = binaryInsert(mainChain, val);
+        mainChain.insert(pos, val);
+    }
+
+    std::vector<int> jacobSeq = generateJacobsthalSequence(pairs.size());
+    for (int j : jacobSeq)
+    {
+        if (j < pairs.size())
+        {
+            int val = pairs[j].first;
+            auto pos = binaryInsert(mainChain, val);
+            mainChain.insert(pos, val);
+        }
+    }
+
+    if (hasLeftover)
+    {
+        auto pos = binaryInsert(mainChain, leftoverValue);
+        mainChain.insert(pos, leftoverValue);
+    }
+
+    c.clear();
+    c.insert(c.end(), mainChain.begin(), mainChain.end());
 }
+
 
 template <typename Container>
 typename Container::iterator FordJohnsonSorter::binaryInsert(Container &c, int val)
