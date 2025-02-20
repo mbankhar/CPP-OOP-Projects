@@ -1,8 +1,28 @@
 #include "FordJohnsonSorter.hpp"
-#include <algorithm> // for std::swap
+#include <algorithm>
 #include <vector>
 #include <deque>
 
+std::vector<int> generateJacobsthalSequence(size_t n)
+{
+	std::vector<int> jacobSeq;
+	if (n == 0)
+		return jacobSeq;
+
+	jacobSeq.push_back(0);
+	if (n == 1)
+		return jacobSeq;
+
+	jacobSeq.push_back(1);
+
+	for (size_t i = 2; i < n; ++i)
+	{
+		int next = jacobSeq[i - 1] + 2 * jacobSeq[i - 2];
+		jacobSeq.push_back(next);
+	}
+
+	return jacobSeq;
+}
 
 template <typename Container>
 void FordJohnsonSorter::sort(Container &c)
@@ -53,7 +73,7 @@ void FordJohnsonSorter::sort(Container &c)
     }
 
     std::vector<int> jacobSeq = generateJacobsthalSequence(pairs.size());
-    for (int j : jacobSeq)
+    for (size_t j : jacobSeq)
     {
         if (j < pairs.size())
         {
@@ -77,12 +97,7 @@ void FordJohnsonSorter::sort(Container &c)
 template <typename Container>
 typename Container::iterator FordJohnsonSorter::binaryInsert(Container &c, int val)
 {
-	for (auto it = c.begin(); it != c.end(); ++it)
-	{
-		if (*it > val)
-			return it;
-	}
-	return c.end();
+    return std::lower_bound(c.begin(), c.end(), val);
 }
 
 template void FordJohnsonSorter::sort<std::vector<int>>(std::vector<int>&);
