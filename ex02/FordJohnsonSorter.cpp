@@ -75,7 +75,7 @@ void FordJohnsonSorter::sort(Container &c)
 	for (size_t i = 0; i < jacobSeq.size(); ++i)
 	{
 		int idx = jacobSeq[i];
-		if (idx < static_cast<int>(pairs.size()) && !used[idx])
+		if (idx < static_cast<int> (pairs.size())  && !used[idx])
 		{
 			insertionOrder.push_back(idx);
 			used[idx] = true;
